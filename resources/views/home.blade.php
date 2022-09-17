@@ -4,7 +4,8 @@
     <div class="row">
         <div class="col-md-10 offset-md-1 col-sm-12 offset-sm-0">
 
-            <table class="table table-hover mt-3" user_id={{ auth()->user()->id }} id="user_id">
+            <table class="table table-hover mt-3" @if (auth()->user()) user_id= {{auth()->user()->id}} @endif  
+                id="user_id">
                 <thead>
                     <tr>
                         <th scope="col">Apppintment Name</th>
@@ -16,7 +17,7 @@
                     @foreach ($appointments as $appointment)
                         <tr id="appointment{{ $appointment->id }}">
                             <td>{{ $appointment->appointment_name }}</td>
-                            <td cell_id="{{ $appointment->id }}" id="select">
+                            <td >
                                 <ul id="appointment_dates{{ $appointment->id }}" class="list-group list-group-flush">
                                     @foreach ($appointment->appointment_dates as $appointment_date)
                                         <li id="appointment_date{{ $appointment_date->id }}"
@@ -28,7 +29,7 @@
                                                 </button>
                                             @else
                                                 <button type="button" class="btn btn-success book_appointment"
-                                                    book="{{ $appointment->id }}" id="{{ $appointment->id }}">
+                                                    id="{{ $appointment_date->id }}">
                                                     Book
                                                 </button>
                                             @endif

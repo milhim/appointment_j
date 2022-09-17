@@ -4,21 +4,21 @@ jQuery(document).ready(function ($) {
             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
         },
     });
-    let user_id=jQuery("#user_id").attr('user_id');
-    let date_id=
+    
     $(document).on("click", ".book_appointment", function (e) {
         e.preventDefault();
+        let date_id=$(this).attr('id');
+        let btn=$(this);
         $.ajax({
-            type: 'post',
+            type: 'put',
             url: `book_appointment/${date_id}`,
-            data: {
-                user_id:user_id,
-
-            },
+            data: "",
             dataType: "json",
             success: function (data) {
-            
-                jQuery(`#appointment_dates${appointment_id}`).append(appointment_date);
+                btn.prop("disabled", true);
+                btn.addClass('btn-secondary');
+                btn.removeClass('btn-success');
+                btn.html('Booked!')
                 jQuery("#new_date_form").trigger("reset");
                 jQuery("#add_new_date_model").modal("hide");
             },
