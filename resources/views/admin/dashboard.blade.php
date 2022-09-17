@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="row">
+    <div class="row p-2">
+        <div class="alert alert-danger d-none m-auto text-center bold " id="error" ></div>
         <div class="col-sm-12 offset-sm-0 col-md-10 offset-md-1 ">
             <div class="p-2 flex-shrink-0 bd-highlight mt-3">
                 <button type="button" class="btn btn-primary" id="btn-add" data-bs-toggle="modal" data-bs-target="#formModal">

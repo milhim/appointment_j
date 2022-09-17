@@ -80,11 +80,21 @@ jQuery(document).ready(function ($) {
                                     </li>
                     `;
                     jQuery(`#appointment_dates${appointment_id}`).append(appointment_date);
+                    
                     jQuery("#new_date_form").trigger("reset");
                     jQuery("#add_new_date_model").modal("hide");
                 },
                 error: function (data) {
                     console.log(data);
+                    if(data.status===403){
+                       
+                        jQuery('#error').removeClass('d-none');
+                        jQuery('#error').html('You are not authorize you must be super admin to add new date');
+                        jQuery("#new_date_form").trigger("reset");
+                        jQuery("#add_new_date_model").modal("hide");
+                    }
+                    
+                   
                 },
             });
         });

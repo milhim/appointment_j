@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::middleware('can:admin')->group(function () {
         Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
         Route::post('/admin/appointments', [AppointmentController::class, 'store']);
-        Route::post('/admin/appointments/{appointment_id}/add_new_appointment_date', [AppointmentController::class, 'newDate']);
+        Route::middleware('can:super_admin')->post('/admin/appointments/{appointment_id}/add_new_appointment_date', [AppointmentController::class, 'newDate']);
     });
     //admin
 
